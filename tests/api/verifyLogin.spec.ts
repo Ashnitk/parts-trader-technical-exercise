@@ -2,8 +2,8 @@ import {test, expect, type APIRequestContext} from '@playwright/test';
 
 import { createTestUser } from '../../data/testData.ts';
 
-const API_URL = 'https://automationexercise.com/api/verifyLogin';
-const CREATE_ACCOUNT_URL = 'https://automationexercise.com/api/createAccount';
+const API_BASE_URL =
+    process.env.API_BASE_URL ?? 'https://automationexercise.com/api/';
 
 let apiContext: APIRequestContext;
 let createdUser: ReturnType<typeof createTestUser>;
@@ -12,11 +12,13 @@ test.describe('Automation Exercise - Verify Login API', () => {
 
     // Create a user before executing tests
     test.beforeAll(async ({ playwright }) => {
-        apiContext = await playwright.request.newContext();
+        apiContext = await playwright.request.newContext({
+            baseURL: API_BASE_URL
+        });
 
         createdUser = createTestUser();
 
-        const createResponse = await apiContext.post(CREATE_ACCOUNT_URL, {
+        const createResponse = await apiContext.post('createAccount', {
             form: {
                 name: `${createdUser.firstName} ${createdUser.lastName}`,
                 email: createdUser.email,
@@ -49,7 +51,7 @@ test.describe('Automation Exercise - Verify Login API', () => {
     });
 
     test('API 7 - Verify login with valid details', async () => {
-        const response = await apiContext.post(API_URL, {
+        const response = await apiContext.post('verifyLogin', {
             form: {
                 email: createdUser.email,
                 password: createdUser.password
@@ -63,7 +65,7 @@ test.describe('Automation Exercise - Verify Login API', () => {
     });
 
     test('API 8 - Verify login without email parameter', async () => {
-        const response = await apiContext.post(API_URL, {
+        const response = await apiContext.post('verifyLogin', {
             form: {
                 password: createdUser.password
             }
@@ -78,7 +80,7 @@ test.describe('Automation Exercise - Verify Login API', () => {
     });
 
     test('API 9 - Verify login using DELETE method', async () => {
-        const response = await apiContext.delete(API_URL);
+        const response = await apiContext.delete('verifyLogin');
 
         const responseBody = await response.json();
 
@@ -89,13 +91,10 @@ test.describe('Automation Exercise - Verify Login API', () => {
     });
 
     test('API 10 - Verify login with invalid details', async () => {
-        const invalidUser = createTestUser();
-
-        // User created via faker
-        const response = await apiContext.post(API_URL, {
+        const response = await apiContext.post('verifyLogin', {
             form: {
-                email: invalidUser.email,
-                password: invalidUser.password
+                email: createdUser.email,
+                password: `${createdUser.password}-incorrect`
             }
         });
 
