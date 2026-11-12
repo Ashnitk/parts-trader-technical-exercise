@@ -3,7 +3,7 @@
     "target": "es2023",
     "module": "esnext",
     "lib": ["ES2023", "DOM"],
-    "types": ["vite/client", "node"],
+    "types": ["node"],
     "allowArbitraryExtensions": true,
     "skipLibCheck": true,
 
@@ -20,5 +20,11 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"]
+  "include": [
+    "playwright.config.ts",
+    "config/**/*.ts",
+    "data/**/*.ts",
+    "pages/**/*.ts",
+    "tests/**/*.ts"
+  ]
 }
