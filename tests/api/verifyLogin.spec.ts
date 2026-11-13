@@ -1,6 +1,6 @@
 import { test, expect, type APIRequestContext } from "@playwright/test";
 
-import { createTestUser } from "../../data/testData.ts";
+import { createTestUser } from "../../src/data/testData.ts";
 
 const API_BASE_URL =
   process.env.API_BASE_URL ?? "https://automationexercise.com/api/";

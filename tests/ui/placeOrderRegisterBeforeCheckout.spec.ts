@@ -1,13 +1,13 @@
 import { test } from "@playwright/test";
 
-import { HomePage } from "../../pages/HomePage";
-import { CartPage } from "../../pages/CartPage";
-import { LoginPage } from "../../pages/LoginPage";
-import { SignupPage } from "../../pages/SignupPage";
-import { CheckoutPage } from "../../pages/CheckoutPage";
-import { PaymentPage } from "../../pages/PaymentPage";
-import { AccountPage } from "../../pages/AccountPage";
-import { createTestUser } from "../../data/testData";
+import { HomePage } from "../../src/pages/HomePage";
+import { CartPage } from "../../src/pages/CartPage";
+import { LoginPage } from "../../src/pages/LoginPage";
+import { SignupPage } from "../../src/pages/SignupPage";
+import { CheckoutPage } from "../../src/pages/CheckoutPage";
+import { PaymentPage } from "../../src/pages/PaymentPage";
+import { AccountPage } from "../../src/pages/AccountPage";
+import { createTestUser } from "../../src/data/testData";
 
 test("Place order: Register before checkout", async ({ page }) => {
   const homePage = new HomePage(page);

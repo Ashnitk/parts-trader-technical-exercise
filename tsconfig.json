@@ -23,8 +23,8 @@
   "include": [
     "playwright.config.ts",
     "config/**/*.ts",
-    "data/**/*.ts",
-    "pages/**/*.ts",
+    "src/data/**/*.ts",
+    "src/pages/**/*.ts",
     "tests/**/*.ts"
   ]
 }
