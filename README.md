@@ -17,9 +17,9 @@ Clone the repository and install dependencies:
 
 ```bash
 npm install
-npx playwright install
+npx playwright install chromium
 ```
-
+All tests are configured to run using Chromium (Chrome).
 ## Running Tests
 
 **Run all tests:**
