@@ -59,3 +59,8 @@ npx playwright show-report
 - **API 8:** Verify login without email parameter
 - **API 9:** Verify login using DELETE method
 - **API 10:** Verify login with invalid credentials
+
+## Links
+Further instructions to clone latest project:
+
+[GETTING_STARTED](GETTING_STARTED.md)
